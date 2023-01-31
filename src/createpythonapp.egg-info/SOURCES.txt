@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.testing.txt
+setup.py
+src/createpythonapp/__init__.py
+src/createpythonapp/cli.py
+src/createpythonapp/createapp.py
+src/createpythonapp.egg-info/PKG-INFO
+src/createpythonapp.egg-info/SOURCES.txt
+src/createpythonapp.egg-info/dependency_links.txt
+src/createpythonapp.egg-info/entry_points.txt
+src/createpythonapp.egg-info/top_level.txt

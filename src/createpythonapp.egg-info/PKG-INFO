@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: createpythonapp
+Version: 1.0.0
+Summary: Cross platform(ish) productivity commands written in python.
+Home-page: https://github.com/zackees/createpythonapp
+Maintainer: Zachary Vorhies
+License: BSD 3-Clause License
+Keywords: create python app
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# createpythonapp
