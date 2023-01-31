@@ -16,7 +16,7 @@ dependencies = [
 ]
 # Change this with the version number bump.
 # Also make the change in zcmds/version.py
-version = "1.0.0"
+version = "1.0.1"
 
 [project.scripts]
 createpythonapp = "create_python_cmd.cli:main"
