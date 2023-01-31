@@ -6,7 +6,7 @@ import unittest
 import shutil
 import subprocess
 
-from createpythonapp.createapp import do_create_python_app
+from create_python_cmd.createapp import do_create_python_app
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 

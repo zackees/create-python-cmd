@@ -6,7 +6,7 @@ Main entry point.
 # flake8: noqa
 
 import argparse
-from createpythonapp.createapp import create_python_app
+from create_python_cmd.createapp import create_python_app
 
 
 def main() -> int:

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "createpythonapp"
+name = "create-python-cmd"
 description = "Cross platform(ish) productivity commands written in python."
 readme = "README.md"
 requires-python = ">=3.7"
@@ -19,4 +19,4 @@ dependencies = [
 version = "1.0.0"
 
 [project.scripts]
-createpythonapp = "createpythonapp.cli:main"
+createpythonapp = "create_python_cmd.cli:main"
