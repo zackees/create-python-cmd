@@ -12,3 +12,5 @@
 > cd myproject
 > createpythoncmd # Creates a new Python command line application.
 ```
+
+Creates a new Python command line application with linters and tests.
