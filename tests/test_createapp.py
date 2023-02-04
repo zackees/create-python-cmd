@@ -33,20 +33,19 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))
-        self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py")))
+        self.assertTrue(
+            os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py"))
+        )
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
-        # tox
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))
         os.chdir(outdir)
-        # rtn = os.system("tox")
         subprocess.check_call("pip install -e .", shell=True)
         subprocess.check_call("pip install -r requirements.testing.txt", shell=True)
         subprocess.check_call("python tests/test_cli.py", shell=True)
         subprocess.check_call("pylint src tests", shell=True)
         subprocess.check_call("flake8 src tests", shell=True)
         subprocess.check_call("mypy src tests", shell=True)
-        # self.assertEqual(rtn, 0)
 
 
 if __name__ == "__main__":
