@@ -18,4 +18,4 @@ dependencies = [
 version = "1.0.2"
 
 [project.scripts]
-createpythonapp = "create_python_cmd.cli:main"
+createpythoncmd = "create_python_cmd.cli:main"
