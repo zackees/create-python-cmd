@@ -52,6 +52,7 @@ def do_create_python_app(
     # Create the app directory
     # get app name from the github url
     cwd = cwd or os.getcwd()
+    os.makedirs(cwd, exist_ok=True)
     app_name = github_url.split("/")[-1]
     app_name_underscore = app_name.replace("-", "_")
     with tempfile.TemporaryDirectory() as tmpdir:
