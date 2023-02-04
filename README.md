@@ -1,4 +1,4 @@
-# createpythonapp
+# create-python-cmd
 
 [![Linting](https://github.com/zackees/createpythonapp/actions/workflows/lint.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/lint.yml)
 

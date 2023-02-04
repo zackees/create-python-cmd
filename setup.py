@@ -3,7 +3,7 @@ import re
 
 import setuptools
 
-URL = "https://github.com/zackees/createpythonapp"
+URL = "https://github.com/zackees/create-python-cmd"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
