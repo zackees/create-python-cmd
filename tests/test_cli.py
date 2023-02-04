@@ -10,7 +10,7 @@ class MainTester(unittest.TestCase):
 
     def test_imports(self) -> None:
         """Test command line interface (CLI)."""
-        rtn = os.system("createpythonapp --help")
+        rtn = os.system("createpythoncmd --help")
         self.assertEqual(0, rtn)
 
 
