@@ -2,4 +2,4 @@
 
 `pip install create-python-cmd`
 
-`create-python-cmd` Creates a new Python command line application.
+`create_python_cmd` Creates a new Python command line application.
