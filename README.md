@@ -14,3 +14,18 @@
 ```
 
 Creates a new Python command line application with linters and tests.
+
+# Linters
+
+The following linters are used
+  * `pylint`
+  * `flake8`
+  * `mypy`
+
+# Testing
+
+To run all linters and tests, simply go to the root directory and run `tox`
+
+# Uploading your project to PYPI
+
+To upload your project to pypi simply run `. ./upload_package.sh`
