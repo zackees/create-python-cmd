@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "create-python-cmd"
 description = "Cross platform(ish) productivity commands written in python."
 requires-python = ">=3.7"
-keywords = ["create python app"]
+keywords = ["create python cmd"]
 license = { text = "BSD 3-Clause License" }
 classifiers = ["Programming Language :: Python :: 3"]
 dependencies = [
@@ -15,7 +15,7 @@ dependencies = [
 ]
 # Change this with the version number bump.
 # Also make the change in zcmds/version.py
-version = "1.0.5"
+version = "1.0.6"
 
 [project.scripts]
-createpythoncmd = "create_python_cmd.cli:main"
+createpythoncmd = "createpythoncmd.cli:main"
