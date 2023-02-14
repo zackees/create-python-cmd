@@ -23,6 +23,7 @@ class CreateAppTester(unittest.TestCase):
         do_create_python_app(
             app_description="MyAppTest description",
             app_author="Firstname Lastname",
+            app_keywords="myapp test",
             version="1.2.3",
             github_url="https://github.com/author/my-app",
             command_name="mytestcommand",
@@ -31,6 +32,9 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(outdir))
         self.assertTrue(os.path.exists(os.path.join(outdir, "pyproject.toml")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
+        setup_py_lines = open(os.path.join(outdir, "setup.py")).readlines()
+        setup_py_lines = [line.strip() for line in setup_py_lines]
+        self.assertIn('KEYWORDS = "myapp test"', setup_py_lines)
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))
         self.assertTrue(

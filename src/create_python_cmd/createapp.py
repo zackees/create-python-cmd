@@ -11,6 +11,9 @@ import shutil
 from typing import Optional
 
 
+TEMPLATE_PROJECT_URL = "https://github.com/zackees/template-python-cmd"
+
+
 def check_name(app_name: str) -> None:
     """Check the name of the application."""
     if not app_name.isidentifier():
@@ -48,6 +51,7 @@ def remove_double_blank_lines(lines: list) -> list:
 def do_create_python_app(
     app_description: str,
     app_author: str,
+    app_keywords: str,  # Example "keyword1, keyword2, keyword3"
     version: str,
     github_url: str,
     command_name: Optional[str] = None,
@@ -63,7 +67,7 @@ def do_create_python_app(
         # download https://github.com/zackees/template-python-cmd
         # extract to tmpdir
         # copy files from tmpdir to app_name
-        os.system(f"git clone https://github.com/zackees/template-python-cmd {tmpdir}")
+        os.system(f"git clone {TEMPLATE_PROJECT_URL} {tmpdir}")
         # change every directory name of from template-python-cmd to app_name
         for root, dirs, files in os.walk(tmpdir):
             for d in dirs:
@@ -93,9 +97,13 @@ def do_create_python_app(
                     pyproject_lines[
                         i
                     ] = f'{command_name} = "{app_name_underscore}.cli:main"'
+        ########
+        # Transform pyproject file with the new information
         pyproject_lines = remove_double_blank_lines(pyproject_lines)
         with open(pyproject, encoding="utf-8", mode="w") as pyproject_file:
             pyproject_file.write("\n".join(pyproject_lines))
+        ########
+        # Transform test_cli.py with the new information
         test_cli = os.path.join(tmpdir, "tests", "test_cli.py")
         with open(test_cli, encoding="utf-8", mode="r") as test_file:
             test_lines = test_file.read().splitlines()
@@ -105,7 +113,8 @@ def do_create_python_app(
                 test_lines[i] = new_line
         with open(test_cli, encoding="utf-8", mode="w") as test_file:
             test_file.write("\n".join(test_lines))
-        # change the url in setup.py
+        ########
+        # Transform setup.py with the new information
         setup = os.path.join(tmpdir, "setup.py")
         with open(setup, encoding="utf-8", mode="r") as setup_file:
             setup_lines = setup_file.read().splitlines()
@@ -115,8 +124,12 @@ def do_create_python_app(
             # maintainer
             if line.startswith("maintainer="):
                 setup_lines[i] = f'maintainer="{app_author}"'
+            if line.startswith("KEYWORDS ="):
+                setup_lines[i] = f'KEYWORDS = "{app_keywords}"'
         with open(setup, encoding="utf-8", mode="w") as setup_file:
             setup_file.write("\n".join(setup_lines))
+        ########
+        # Copy template files from this temporary directory to the app directory
         files = os.listdir(tmpdir)
         files = [os.path.join(tmpdir, f) for f in files if f != ".git"]
         for f in files:
@@ -134,6 +147,7 @@ def create_python_app() -> None:
     app_name = input("Python app name: ")
     check_name(app_name)
     app_description = input("Python app description: ")
+    app_keywords = input("Python app keywords: ")
     app_author = input("Python app author: ")
     github_url = input("GitHub URL: ")
     version = input("Version [1.0.0]: ")
@@ -148,6 +162,7 @@ def create_python_app() -> None:
     do_create_python_app(
         app_description=app_description,
         app_author=app_author,
+        app_keywords=app_keywords,
         version=version,
         github_url=github_url,
         command_name=command_name,
