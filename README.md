@@ -29,3 +29,7 @@ To run all linters and tests, simply go to the root directory and run `tox`
 # Uploading your project to PYPI
 
 To upload your project to pypi simply run `. ./upload_package.sh`
+
+# Versions
+
+  * `1.0.9` - Adds keywords prompt during setup.
