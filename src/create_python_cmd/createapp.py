@@ -177,6 +177,18 @@ def create_python_app() -> None:
         github_url=github_url,
         command_name=command_name,
     )
+    python_str = "python" if sys.platform == "win32" else "pytho3n"
+    print(
+        "\nDone! Now execute the following commands:\n"
+        f"  {python_str} make_venv.py\n"
+        ". ./install_dev.sh"
+    )
+    print("If you are currently in VSCode then close the Program and reopen it.")
+    print(
+        "If running from the command line, make sure you enter into the virtual"
+        " environment with `. ./activate.sh`. Note that VSCode will automatically"
+        " do this for you."
+    )
 
 
 if __name__ == "__main__":
