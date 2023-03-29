@@ -2,6 +2,8 @@
 set -e
 # cd to self bash script directory
 cd $( dirname ${BASH_SOURCE[0]})
+echo Running isort src tests
+isort src tests
 echo Running black src tests
 black src tests
 echo Running flake8 src tests

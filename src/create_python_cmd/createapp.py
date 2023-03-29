@@ -6,10 +6,10 @@
 
 
 import os
-import tempfile
 import shutil
+import sys
+import tempfile
 from typing import Optional
-
 
 TEMPLATE_PROJECT_URL = "https://github.com/zackees/template-python-cmd"
 
