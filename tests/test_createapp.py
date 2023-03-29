@@ -11,6 +11,12 @@ from create_python_cmd.createapp import do_create_python_app
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 
+def read_utf8(path: str) -> str:
+    """Read a file as UTF-8."""
+    with open(path, encoding="utf-8", mode="r") as file:
+        return file.read()
+
+
 class CreateAppTester(unittest.TestCase):
     """Main tester class."""
 
@@ -32,8 +38,7 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(outdir))
         self.assertTrue(os.path.exists(os.path.join(outdir, "pyproject.toml")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
-        setup_py_lines = open(os.path.join(outdir, "setup.py")).readlines()
-        setup_py_lines = [line.strip() for line in setup_py_lines]
+        setup_py_lines: list[str] = read_utf8(os.path.join(outdir, "setup.py")).splitlines()
         self.assertIn('KEYWORDS = "myapp test"', setup_py_lines)
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))

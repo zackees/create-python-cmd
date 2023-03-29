@@ -11,7 +11,7 @@ from create_python_cmd.createapp import create_python_app
 
 def main() -> int:
     """Main entry point for the template_python_cmd package."""
-    parser = argparse.ArgumentParser(prog="createpythonapp")
+    parser = argparse.ArgumentParser(prog="createpythoncmd")
     args = parser.parse_args()
     create_python_app()
     return 0
