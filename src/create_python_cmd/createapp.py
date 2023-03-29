@@ -137,6 +137,16 @@ def do_create_python_app(
                 shutil.copytree(f, os.path.join(cwd, os.path.basename(f)))
             else:
                 shutil.copy(f, cwd)
+        # Add +x to all *.sh files in the root directory.
+        for root, _, files in os.walk(cwd):
+            for f in files:
+                if f.endswith(".sh"):
+                    path = os.path.join(root, f)
+                    # git +x permission
+                    os.system(f'git update-index --chmod=+x "{path}"')
+                    if sys.platform != "win32":
+                        # local +x permission
+                        os.system(f"chmod +x {path}")
 
 
 def create_python_app() -> None:
