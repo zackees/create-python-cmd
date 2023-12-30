@@ -2,6 +2,7 @@
 set -e
 # cd to self bash script directory
 cd $( dirname ${BASH_SOURCE[0]})
+. ./activate.sh
 echo Running isort src tests
 isort src tests
 echo Running black src tests

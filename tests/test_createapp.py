@@ -51,13 +51,23 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))
         os.chdir(outdir)
-        subprocess.check_call("pip install -e .", shell=True)
-        subprocess.check_call("pip install -r requirements.testing.txt", shell=True)
-        subprocess.check_call("lint", shell=True)
-        subprocess.check_call("python tests/test_cli.py", shell=True)
-        subprocess.check_call("pylint src tests", shell=True)
-        subprocess.check_call("flake8 src tests", shell=True)
-        subprocess.check_call("mypy src tests", shell=True)
+
+        def exe(cmd: str) -> int:
+            """Execute a command."""
+            return subprocess.call(cmd, shell=True)
+
+        cmds = [
+            "pip install -e .",
+            "pip install -r requirements.testing.txt",
+            "lint",
+            "python tests/test_cli.py",
+            "pylint src tests",
+            "flake8 src tests",
+            "mypy src tests",
+        ]
+        for cmd in cmds:
+            rtn = exe(cmd)
+            self.assertEqual(0, rtn, f"Command failed: {cmd}")
 
 
 if __name__ == "__main__":

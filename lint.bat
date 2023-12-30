@@ -1,6 +1,7 @@
 @echo off
 REM Change to the directory where the batch script is located
 cd %~dp0
+call venv\Scripts\activate
 echo Running isort on src and tests
 isort src tests
 echo Running black on src and tests
