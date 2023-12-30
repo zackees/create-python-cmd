@@ -32,6 +32,7 @@ To upload your project to pypi simply run `. ./upload_package.sh`
 
 # Versions
 
+  * `1.2.0` - Refresh with new modern practices like an installation script.
   * `1.1.1` - Adds chmod +x to shell scripts and adds post install instructions.
   * `1.1.0` - createpythonapp -> createpythoncmd.
   * `1.0.9` - Adds keywords prompt during setup.
