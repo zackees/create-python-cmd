@@ -38,35 +38,32 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(outdir))
         self.assertTrue(os.path.exists(os.path.join(outdir, "pyproject.toml")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
-        setup_py_lines: list[str] = read_utf8(
-            os.path.join(outdir, "setup.py")
-        ).splitlines()
+        setup_py_lines: list[str] = read_utf8(os.path.join(outdir, "setup.py")).splitlines()
         self.assertIn('KEYWORDS = "myapp test"', setup_py_lines)
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))
-        self.assertTrue(
-            os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py"))
-        )
+        self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))
         os.chdir(outdir)
 
-        def exe(cmd: str) -> int:
-            """Execute a command."""
-            return subprocess.call(cmd, shell=True)
-
         cmds = [
             "pip install -e .",
             "pip install -r requirements.testing.txt",
-            "lint",
+            "black src",
+            "black tests",
             "python tests/test_cli.py",
             "pylint src tests",
             "flake8 src tests",
             "mypy src tests",
         ]
+        assert os.path.exists(os.path.join(outdir, "lint"))
+        env_with_current_dir = os.environ.copy()
+        os_sep = ";" if os.name == "nt" else ":"
+        env_with_current_dir["PATH"] = f"{outdir}{os_sep}{env_with_current_dir['PATH']}"
         for cmd in cmds:
-            rtn = exe(cmd)
+            rtn = subprocess.call(cmd, env=env_with_current_dir, shell=True)
             self.assertEqual(0, rtn, f"Command failed: {cmd}")
 
 
