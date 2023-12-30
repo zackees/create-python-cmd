@@ -53,6 +53,7 @@ class CreateAppTester(unittest.TestCase):
         os.chdir(outdir)
         subprocess.check_call("pip install -e .", shell=True)
         subprocess.check_call("pip install -r requirements.testing.txt", shell=True)
+        subprocess.check_call("lint", shell=True)
         subprocess.check_call("python tests/test_cli.py", shell=True)
         subprocess.check_call("pylint src tests", shell=True)
         subprocess.check_call("flake8 src tests", shell=True)
