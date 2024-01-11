@@ -7,6 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "create-python-cmd"
 description = "Cross platform(ish) productivity commands written in python."
 requires-python = ">=3.7"
+readme = "README.md"
 keywords = ["create python cmd"]
 license = { text = "BSD 3-Clause License" }
 classifiers = ["Programming Language :: Python :: 3"]
