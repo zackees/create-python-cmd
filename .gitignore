@@ -135,4 +135,5 @@ dmypy.json
 .pyre/
 .activate.sh
 .DS_Store
-.MyAppTest/
+.MyAppTest
+

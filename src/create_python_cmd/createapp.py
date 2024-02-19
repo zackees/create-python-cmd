@@ -154,21 +154,41 @@ def create_python_app() -> None:
     # check if git exists
     if not shutil.which("git"):
         raise RuntimeError("Git is not installed.")
-    app_name = input("Python app name: ")
-    check_name(app_name)
+    while True:
+        try:
+            app_name = input("Python app name: ").replace("-", "_")
+            check_name(app_name)
+            break
+        except ValueError as e:
+            print(f"Error: {e}, try again")
+            continue
+
     app_description = input("Python app description: ")
     app_keywords = input("Python app keywords: ")
     app_author = input("Python app author: ")
     github_url = input("GitHub URL: ")
-    version = input("Version [1.0.0]: ")
-    if not version:
-        version = "1.0.0"
-    check_semantic_version(version)
+    while True:
+        try:
+            version = input("Version [1.0.0]: ")
+            if not version:
+                version = "1.0.0"
+            check_semantic_version(version)
+            break
+        except ValueError as e:
+            print(f"Error: {e}, try again")
+            continue
     add_command = input("Add a command? [y/N]: ").lower() == "y"
     command_name = None
     if add_command:
-        command_name = input("Command name: ")
-        check_name(command_name)
+        while True:
+            try:
+                command_name = input("Command name: ")
+                command_name = command_name.replace("-", "_")
+                check_name(command_name)
+                break
+            except ValueError as e:
+                print(f"Error: {e}, try again")
+                continue
     do_create_python_app(
         app_description=app_description,
         app_author=app_author,
@@ -177,10 +197,7 @@ def create_python_app() -> None:
         github_url=github_url,
         command_name=command_name,
     )
-    print(
-        "\nDone! Now execute the following commands in git-bash:\n"
-        f"  .install\n"
-    )
+    print("\nDone! Now execute the following commands in git-bash:\n" f"  ./install\n")
     print("If you are currently in VSCode then close the Program and reopen it.")
     print(
         "If running from the command line, make sure you enter into the virtual"
