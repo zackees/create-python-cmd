@@ -31,6 +31,7 @@ To run all linters and tests, simply go to the root directory and run `tox`
 To upload your project to pypi simply run `. ./upload_package.sh`
 
 # Versions
+  * `1.2.4` - Varius fixes.
   * `1.2.2` - Adds retries to get correct parameters and auto corrects parameters instead of exiting.
   * `1.2.0` - Refresh with new modern practices like an installation script.
   * `1.1.1` - Adds chmod +x to shell scripts and adds post install instructions.
