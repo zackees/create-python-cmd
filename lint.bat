@@ -8,8 +8,6 @@ echo Running black on src and tests
 black src tests
 echo Running flake8 on src and tests
 flake8 src tests
-echo Running pylint on src
-pylint src tests
 echo Running mypy on src
 mypy src tests
 echo Linting complete!

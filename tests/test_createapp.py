@@ -1,16 +1,17 @@
 """
 Unit test file.
 """
+
+import atexit
 import os
 import shutil
 import subprocess
 import unittest
-import atexit
 
 from create_python_cmd.createapp import do_create_python_app
 
 HERE = os.path.abspath(os.path.dirname(__file__))
-REMOVE_AFTER_TEST = True
+REMOVE_AFTER_TEST = False
 
 
 def read_utf8(path: str) -> str:
@@ -59,21 +60,20 @@ class CreateAppTester(unittest.TestCase):
         os.chdir(outdir)
 
         cmds = [
-            "pip install -e .",
-            "pip install -r requirements.testing.txt",
+            "bash ./install",
             "black src",
             "black tests",
             "python tests/test_cli.py",
-            "pylint src tests",
-            "flake8 src tests",
-            "mypy src tests",
+            "bash ./lint",
         ]
         assert os.path.exists(os.path.join(outdir, "lint"))
         env_with_current_dir = os.environ.copy()
         os_sep = ";" if os.name == "nt" else ":"
         env_with_current_dir["PATH"] = f"{outdir}{os_sep}{env_with_current_dir['PATH']}"
+        env_with_current_dir.pop("IN_ACTIVATED_ENV", None)
         for cmd in cmds:
-            rtn = subprocess.call(cmd, env=env_with_current_dir, shell=True)
+            print(f"Running command: {cmd} in {outdir}")
+            rtn = subprocess.call(cmd, env=env_with_current_dir, shell=True, cwd=outdir)
             self.assertEqual(0, rtn, f"Command failed: {cmd}")
 
 

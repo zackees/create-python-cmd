@@ -1,6 +1,5 @@
 """Create a Python application."""
 
-
 # pylint: disable=all
 # flake8: noqa
 
@@ -17,7 +16,9 @@ TEMPLATE_PROJECT_URL = "https://github.com/zackees/template-python-cmd"
 def check_name(app_name: str) -> None:
     """Check the name of the application."""
     if not app_name.isidentifier():
-        raise ValueError("The name of the application is not a valid Python identifier.")
+        raise ValueError(
+            "The name of the application is not a valid Python identifier."
+        )
 
 
 def check_semantic_version(version: str) -> None:
@@ -25,7 +26,9 @@ def check_semantic_version(version: str) -> None:
     version_list = version.split(".")
     for v in version_list:
         if not v.isnumeric():
-            raise ValueError("The version of the application is not a valid semantic version.")
+            raise ValueError(
+                "The version of the application is not a valid semantic version."
+            )
 
 
 def remove_double_blank_lines(lines: list) -> list:
@@ -69,7 +72,9 @@ def do_create_python_app(
         for root, dirs, files in os.walk(tmpdir):
             for d in dirs:
                 if d == "template-python-cmd" or d == "template_python_cmd":
-                    shutil.move(os.path.join(root, d), os.path.join(root, app_name_underscore))
+                    shutil.move(
+                        os.path.join(root, d), os.path.join(root, app_name_underscore)
+                    )
         pyproject = os.path.join(tmpdir, "pyproject.toml")
         with open(pyproject, encoding="utf-8", mode="r") as pyproject_file:
             pyproject_lines = pyproject_file.read().splitlines()
@@ -89,7 +94,9 @@ def do_create_python_app(
                     pyproject_lines[i] = ""
             else:
                 if line.startswith("test_cmd ="):
-                    pyproject_lines[i] = f'{command_name} = "{app_name_underscore}.cli:main"'
+                    pyproject_lines[i] = (
+                        f'{command_name} = "{app_name_underscore}.cli:main"'
+                    )
         ########
         # Transform pyproject file with the new information
         pyproject_lines = remove_double_blank_lines(pyproject_lines)
