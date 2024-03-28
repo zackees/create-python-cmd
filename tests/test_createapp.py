@@ -55,6 +55,7 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))
+        self.assertTrue(os.path.exists(os.path.join(outdir, ".gitignore")))
         os.chdir(outdir)
 
         cmds = [
