@@ -5,10 +5,12 @@ import os
 import shutil
 import subprocess
 import unittest
+import atexit
 
 from create_python_cmd.createapp import do_create_python_app
 
 HERE = os.path.abspath(os.path.dirname(__file__))
+REMOVE_AFTER_TEST = True
 
 
 def read_utf8(path: str) -> str:
@@ -17,13 +19,18 @@ def read_utf8(path: str) -> str:
         return file.read()
 
 
+OUTDIR = os.path.normpath(os.path.join(HERE, "..", ".MyAppTest"))
+if REMOVE_AFTER_TEST:
+    atexit.register(lambda: shutil.rmtree(OUTDIR, ignore_errors=True))
+
+
 class CreateAppTester(unittest.TestCase):
     """Main tester class."""
 
     def test_imports(self) -> None:
         """Test command line interface (CLI)."""
 
-        outdir = os.path.normpath(os.path.join(HERE, "..", ".MyAppTest"))
+        outdir = OUTDIR
         if os.path.exists(outdir):
             shutil.rmtree(outdir)
         do_create_python_app(
@@ -35,19 +42,16 @@ class CreateAppTester(unittest.TestCase):
             github_url="https://github.com/author/my-app",
             command_name="mytestcommand",
             cwd=outdir,
+            chmod_scripts=False,
         )
         self.assertTrue(os.path.exists(outdir))
         self.assertTrue(os.path.exists(os.path.join(outdir, "pyproject.toml")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
-        setup_py_lines: list[str] = read_utf8(
-            os.path.join(outdir, "setup.py")
-        ).splitlines()
+        setup_py_lines: list[str] = read_utf8(os.path.join(outdir, "setup.py")).splitlines()
         self.assertIn('KEYWORDS = "myapp test"', setup_py_lines)
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))
-        self.assertTrue(
-            os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py"))
-        )
+        self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))

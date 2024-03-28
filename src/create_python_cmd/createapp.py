@@ -53,6 +53,7 @@ def do_create_python_app(
     github_url: str,
     command_name: Optional[str] = None,
     cwd: Optional[str] = None,
+    chmod_scripts: bool = True,
 ) -> None:
     # Create the app directory
     # get app name from the github url
@@ -126,19 +127,23 @@ def do_create_python_app(
         files = [os.path.join(tmpdir, f) for f in files if f != ".git"]
         for f in files:
             if os.path.isdir(f):
-                shutil.copytree(f, os.path.join(cwd, os.path.basename(f)))
+                if os.path.basename(f) == ".github":
+                    continue
+                dst = os.path.join(cwd, os.path.basename(f))
+                shutil.copytree(f, dst)
             else:
                 shutil.copy(f, cwd)
         # Add +x to all *.sh files in the root directory.
-        for root, _, files in os.walk(cwd):
-            for f in files:
-                if f.endswith(".sh"):
-                    path = os.path.join(root, f)
-                    # git +x permission
-                    os.system(f'git update-index --add --chmod=+x "{path}"')
-                    if sys.platform != "win32":
-                        # local +x permission
-                        os.system(f"chmod +x {path}")
+        if chmod_scripts:
+            for root, _, files in os.walk(cwd):
+                for f in files:
+                    if f.endswith(".sh"):
+                        path = os.path.join(root, f)
+                        # git +x permission
+                        os.system(f'git update-index --add --chmod=+x "{path}"')
+                        if sys.platform != "win32":
+                            # local +x permission
+                            os.system(f"chmod +x {path}")
 
 
 def create_python_app() -> None:
