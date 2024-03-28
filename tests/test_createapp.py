@@ -27,6 +27,7 @@ class CreateAppTester(unittest.TestCase):
         if os.path.exists(outdir):
             shutil.rmtree(outdir)
         do_create_python_app(
+            "my-app",
             app_description="MyAppTest description",
             app_author="Firstname Lastname",
             app_keywords="myapp test",
