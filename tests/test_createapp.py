@@ -60,17 +60,15 @@ class CreateAppTester(unittest.TestCase):
         os.chdir(outdir)
 
         cmds = [
-            "bash ./install",
-            "bash ./activate.sh && pip install -r requirements.testing.txt",
+            "bash install",
+            "bash activate.sh && pip install -r requirements.testing.txt",
             "black src",
             "black tests",
-            "python tests/test_cli.py",
-            "bash ./lint",
+            "bash lint",
+            "bash test",
         ]
         assert os.path.exists(os.path.join(outdir, "lint"))
         env_with_current_dir = os.environ.copy()
-        os_sep = ";" if os.name == "nt" else ":"
-        env_with_current_dir["PATH"] = f"{outdir}{os_sep}{env_with_current_dir['PATH']}"
         env_with_current_dir.pop("IN_ACTIVATED_ENV", None)
         for cmd in cmds:
             print(f"Running command: {cmd} in {outdir}")
