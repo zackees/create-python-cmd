@@ -24,8 +24,8 @@ jobs:
           ${{ runner.os }}-pip-
     - name: Install dependencies
       run: |
-        ./install
+        bash install
     - name: Run Test
       run: |
-        ./test
+        bash test
       
