@@ -41,7 +41,7 @@ class CreateAppTester(unittest.TestCase):
             app_keywords="myapp test",
             version="1.2.3",
             github_url="https://github.com/author/my-app",
-            command_name="mytestcommand",
+            command_name="my-app",
             cwd=outdir,
             chmod_scripts=False,
         )
@@ -61,6 +61,7 @@ class CreateAppTester(unittest.TestCase):
 
         cmds = [
             "bash ./install",
+            "bash ./activate.sh && pip install -r requirements.testing.txt",
             "black src",
             "black tests",
             "python tests/test_cli.py",
