@@ -6,6 +6,11 @@
 [![Ubuntu_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml)
 [![Win_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml)
 
+
+This is a command for creating a skeleton project for python commands. It uses
+uv to boot strap the project and install an environment. Helpful utilities for
+installing the project are given, wee below.
+
 Template that this uses is here:
   * https://github.com/zackees/template-python-cmd
 
@@ -18,16 +23,22 @@ Template that this uses is here:
 
 Creates a new Python command line application with linters and tests.
 
+# Tools
+
+The following tools will be installed
+  * `install` - script to boot strap and install the python package
+  * `clean` - removes build artifacts
+  * `lint` - runs the linters on the source code
+  * `test` - runs the unit test
+
 # Linters
 
 The following linters are used
-  * `pylint`
-  * `flake8`
+  * `ruff`
+  * `black`
+  * `isort`
   * `mypy`
 
-# Testing
-
-To run all linters and tests, simply go to the root directory and run `tox`
 
 # Uploading your project to PYPI
 
