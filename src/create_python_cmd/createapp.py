@@ -94,9 +94,9 @@ def do_create_python_app(
                     pyproject_lines[i] = ""
             else:
                 if line.startswith("test_cmd ="):
-                    pyproject_lines[i] = (
-                        f'{command_name} = "{app_name_underscore}.cli:main"'
-                    )
+                    pyproject_lines[
+                        i
+                    ] = f'{command_name} = "{app_name_underscore}.cli:main"'
         ########
         # Transform pyproject file with the new information
         pyproject_lines = remove_double_blank_lines(pyproject_lines)
@@ -207,7 +207,7 @@ def create_python_app() -> None:
     print("If you are currently in VSCode then close the Program and reopen it.")
     print(
         "If running from the command line, make sure you enter into the virtual"
-        " environment with `. ./activate.sh`. Note that VSCode will automatically"
+        " environment with `. ./activate`. Note that VSCode will automatically"
         " do this for you."
     )
 

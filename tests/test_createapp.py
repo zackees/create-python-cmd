@@ -65,7 +65,7 @@ class CreateAppTester(unittest.TestCase):
 
         cmds = [
             "bash install",
-            "bash activate.sh && pip install -r requirements.testing.txt",
+            "uv pip install -r requirements.testing.txt",
             "black src",
             "black tests",
             "bash lint",

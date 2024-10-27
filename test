@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-. ./activate.sh
+. ./activate
 pytest tests

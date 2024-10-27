@@ -6,6 +6,9 @@
 [![Ubuntu_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml)
 [![Win_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml)
 
+Template that this uses is here:
+  * https://github.com/zackees/template-python-cmd
+
 ```python
 > pip install create-python-cmd
 > git clone https://github.com/.../myproject
@@ -31,7 +34,7 @@ To run all linters and tests, simply go to the root directory and run `tox`
 To upload your project to pypi simply run `. ./upload_package.sh`
 
 # Versions
-  * `1.2.6` - Fixes git bash not being cd'd to the current directory in VSCode.
+  * `2.0.0` - Moved to the uv build system as this is much better and fixes the boot strapping of python issue. Fixes git bash not being cd'd to the current directory in VSCode.
   * `1.2.5` - Varius fixes and test fixes.
   * `1.2.2` - Adds retries to get correct parameters and auto corrects parameters instead of exiting.
   * `1.2.0` - Refresh with new modern practices like an installation script.
