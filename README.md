@@ -31,6 +31,7 @@ To run all linters and tests, simply go to the root directory and run `tox`
 To upload your project to pypi simply run `. ./upload_package.sh`
 
 # Versions
+  * `1.2.6` - Fixes git bash not being cd'd to the current directory in VSCode.
   * `1.2.5` - Varius fixes and test fixes.
   * `1.2.2` - Adds retries to get correct parameters and auto corrects parameters instead of exiting.
   * `1.2.0` - Refresh with new modern practices like an installation script.
