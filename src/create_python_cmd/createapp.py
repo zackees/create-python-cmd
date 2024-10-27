@@ -142,15 +142,12 @@ def do_create_python_app(
                 shutil.copy(f, cwd)
         # Add +x to all *.sh files in the root directory.
         if chmod_scripts:
-            for root, _, files in os.walk(cwd):
-                for f in files:
-                    if f.endswith(".sh"):
-                        path = os.path.join(root, f)
-                        # git +x permission
-                        os.system(f'git update-index --add --chmod=+x "{path}"')
-                        if sys.platform != "win32":
-                            # local +x permission
-                            os.system(f"chmod +x {path}")
+            files = ["clean", "install", "test", "lint"]
+            for f in files:
+                path = os.path.join(root, f)
+                os.system(f'git update-index --add --chmod=+x "{path}"')
+                if sys.platform != "win32":
+                    os.system(f"chmod +x {path}")
 
 
 def create_python_app() -> None:
