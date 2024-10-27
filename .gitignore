@@ -136,3 +136,6 @@ dmypy.json
 .activate.sh
 .DS_Store
 .MyAppTest/
+.aider*
+!.aider.conf.yml
+!.aiderignore

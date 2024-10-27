@@ -48,11 +48,15 @@ class CreateAppTester(unittest.TestCase):
         self.assertTrue(os.path.exists(outdir))
         self.assertTrue(os.path.exists(os.path.join(outdir, "pyproject.toml")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "setup.py")))
-        setup_py_lines: list[str] = read_utf8(os.path.join(outdir, "setup.py")).splitlines()
+        setup_py_lines: list[str] = read_utf8(
+            os.path.join(outdir, "setup.py")
+        ).splitlines()
         self.assertIn('KEYWORDS = "myapp test"', setup_py_lines)
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "cli.py")))
-        self.assertTrue(os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py")))
+        self.assertTrue(
+            os.path.exists(os.path.join(outdir, "src", "my_app", "__init__.py"))
+        )
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tests", "test_cli.py")))
         self.assertTrue(os.path.exists(os.path.join(outdir, "tox.ini")))
