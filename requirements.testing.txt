@@ -1,3 +1,6 @@
 pyright
 pytest
 pytest-xdist
+isort
+ruff
+black
