@@ -32,9 +32,6 @@ fi
 # If Windows, then symlink .venv/Scripts/activate to .venv/bin/activate
 if [[ "$OSTYPE" == "msys" ]]; then
   ln -s .venv/Scripts/activate ./activate
-  if [[ -d .git ]]; then
-    git add ./activate --chmod=+x
-  fi
 else
   ln -s .venv/bin/activate ./activate
 fi

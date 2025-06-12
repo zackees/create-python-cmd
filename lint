@@ -4,11 +4,11 @@ set -e
 cd $( dirname ${BASH_SOURCE[0]})
 . ./activate
 echo Running isort src tests
-isort src tests
+uv run isort src tests
 echo Running black src tests
 black src tests
 echo Running ruff src tests
 ruff check src tests
 echo Running mypy src
-mypy src tests
+uv run mypy src tests
 echo Linting complete!
