@@ -180,7 +180,7 @@ wheels = [
 
 [[package]]
 name = "create-python-cmd"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "black", version = "23.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.8'" },
