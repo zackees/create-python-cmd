@@ -74,11 +74,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< HEAD
-VIRTUAL_ENV='C:\Users\niteris\dev\createpythonapp\.venv'
-=======
 VIRTUAL_ENV='C:\Users\niteris\dev\create-python-cmd\.venv'
->>>>>>> 2c5f837 (Add UV automation for linting and installing dependencies)
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi
@@ -88,17 +84,10 @@ _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"
 export PATH
 
-<<<<<<< HEAD
-if [ "xcreatepythonapp" != x ] ; then
-    VIRTUAL_ENV_PROMPT="createpythonapp"
-else
-    VIRTUAL_ENV_PROMPT=$(basename "$VIRTUAL_ENV")
-=======
 if [ "xcreate-python-cmd" != x ] ; then
     VIRTUAL_ENV_PROMPT="(create-python-cmd) "
 else
     VIRTUAL_ENV_PROMPT="($(basename "$VIRTUAL_ENV")) "
->>>>>>> 2c5f837 (Add UV automation for linting and installing dependencies)
 fi
 export VIRTUAL_ENV_PROMPT
 
@@ -110,11 +99,7 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1-}"
-<<<<<<< HEAD
-    PS1="(${VIRTUAL_ENV_PROMPT}) ${PS1-}"
-=======
     PS1="${VIRTUAL_ENV_PROMPT}${PS1-}"
->>>>>>> 2c5f837 (Add UV automation for linting and installing dependencies)
     export PS1
 fi
 
