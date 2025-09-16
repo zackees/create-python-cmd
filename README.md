@@ -1,11 +1,5 @@
 # create-python-cmd
 
-[![Linting](https://github.com/zackees/createpythonapp/actions/workflows/lint.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/lint.yml)
-
-[![MacOS_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_macos.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_macos.yml)
-[![Ubuntu_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_ubuntu.yml)
-[![Win_Tests](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml/badge.svg)](https://github.com/zackees/createpythonapp/actions/workflows/push_win.yml)
-
 
 This is a command for creating a skeleton project for python commands. It uses
 uv to boot strap the project and install an environment. Helpful utilities for
@@ -36,8 +30,7 @@ The following tools will be installed
 The following linters are used
   * `ruff`
   * `black`
-  * `isort`
-  * `mypy`
+  * `pyright`
 
 
 # Uploading your project to PYPI

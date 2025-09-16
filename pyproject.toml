@@ -6,12 +6,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "create-python-cmd"
 description = "Cross platform(ish) productivity commands written in python."
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 readme = "README.md"
 keywords = ["create python cmd"]
 license = { text = "BSD 3-Clause License" }
 classifiers = ["Programming Language :: Python :: 3"]
-dependencies = ["ruff", "mypy", "pytest", "black"]
+dependencies = [
+    "ruff",
+    "pyright",
+    "black",
+    "pytest",
+    "pytest-xdist",
+    "pytest-timeout",
+    "pytest-cov",
+]
 # Change this with the version number bump.
 # Also make the change in zcmds/version.py
 version = "2.0.1"
@@ -19,3 +27,31 @@ version = "2.0.1"
 [project.scripts]
 createpythoncmd = "create_python_cmd.cli:main"
 create-python-cmd = "create_python_cmd.cli:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501", # line too long (handled by black)
+]
+
+[tool.pyright]
+include = ["src", "tests"]
+pythonVersion = "3.8"
+typeCheckingMode = "basic"
+reportMissingImports = true
+
+[tool.pytest.ini_options]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+]

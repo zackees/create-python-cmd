@@ -1,19 +1,34 @@
 """
-Unit test file.
+Test command line interface functionality.
 """
 
-import os
-import unittest
+import subprocess
+
+import pytest
 
 
-class MainTester(unittest.TestCase):
-    """Main tester class."""
+@pytest.mark.unit
+def test_cli_help():
+    """Test that CLI help works."""
+    result = subprocess.run(
+        ["createpythoncmd", "--help"],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0
+    assert (
+        "createpythoncmd" in result.stdout.lower() or "usage" in result.stdout.lower()
+    )
 
-    def test_imports(self) -> None:
-        """Test command line interface (CLI)."""
-        rtn = os.system("createpythoncmd --help")
-        self.assertEqual(0, rtn)
+
+@pytest.mark.unit
+def test_cli_command_exists():
+    """Test that createpythoncmd command exists."""
+    result = subprocess.run(
+        ["createpythoncmd", "--help"], capture_output=True, text=True
+    )
+    assert result.returncode == 0
 
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main([__file__, "-v"])
